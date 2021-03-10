@@ -10,4 +10,5 @@ def index():
 
 @main.route("/about")
 def about():
-    pass
+    return render_template("about.html")
+

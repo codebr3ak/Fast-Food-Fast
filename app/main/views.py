@@ -11,3 +11,8 @@ def index():
 @main.route("/about")
 def about():
     pass
+
+@main.route("/footer")
+def footer():
+    pass
+    return render_templates('footer.html')

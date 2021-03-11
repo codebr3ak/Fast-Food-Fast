@@ -11,3 +11,6 @@ def index():
 @main.route("/about")
 def about():
     pass
+@main.route("/home")
+def home()
+    return render_template('home.html',title='home page')

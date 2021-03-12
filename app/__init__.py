@@ -1,6 +1,7 @@
 from flask import Flask
 from config import config_options
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 
 db = SQLAlchemy()
@@ -22,11 +23,16 @@ def create_app(config_name):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # set the configurations
-    app.config.from_object(config_options[config_name])
+    app.config.from_object(os.environ['APP_SETTINGS'])
+    db=SQLAlchemy(app)
 
     # initialiaze the database
     db.init_app(app)
 
+
+    with app.app_context():
+        from .import routes
+        db.create_all
     # register your blueprints here
     from app.main import main
     from app.auth import auth
@@ -34,6 +40,11 @@ def create_app(config_name):
 
     app.register_blueprint(main)
     app.register_blueprint(auth)
+
+
+    @app.route('/')
+    def  hello():
+        return "Hello World!"
 
 
     return app

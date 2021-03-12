@@ -1,27 +1,33 @@
-"""
-module config
-"""
+import os
+
+
 class Config:
-    """
-    parent config class
-    """
-    DEBUG = False
+    '''
+    General configuration parent class
+    '''
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+    CSRF_ENABLED = os.environ.get('CSRF_ENABLED')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False 
 
-class DevelopmentConfig(Config):
-    """
-    class for development configuration
-    """
-    DEBUG = True
 
-class TestingConfig(Config):
-    """
-    class for testing configuration
-    """
-    DEBUG = True
-    TESTING = True
+
 
 class ProductionConfig(Config):
-    """
-    class for production configuration
-    """
-    DEBUG = False
+    DEBUG = os.environ.get("DEBUG")
+
+
+class DevelopmentConfig(Config):
+    DEBUG = os.environ.get('DEBUG')
+
+
+class TestingConfig(Config):
+    TESTING = True
+
+
+config_options = {
+    'development': DevelopmentConfig,
+    'production': ProductionConfig,
+    'testing':TestingConfig,
+
+
+}

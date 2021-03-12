@@ -13,5 +13,12 @@ def homepage():
 
 
 
+<<<<<<< HEAD
 if __name__=='__main__':
     app.run(debug=True)
+=======
+@main.route("/about")
+def about():
+    return render_template("about.html")
+
+>>>>>>> ba86ec7ade79a936b81e04ee8b80a97cf8f97770

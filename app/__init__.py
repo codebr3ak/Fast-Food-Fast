@@ -1,25 +1,30 @@
+"""
+module init
+"""
 from flask import Flask
+<<<<<<< HEAD
 from config import config_options
 from flask_sqlalchemy import SQLAlchemy
 import os
+=======
+from config import DevelopmentConfig
+from .views import orders_blue_print
+>>>>>>> ba86ec7ade79a936b81e04ee8b80a97cf8f97770
 
 
-db = SQLAlchemy()
-# from app.models import User
-
-# create an application factory
-
-
-def create_app(config_name):
+def create_app(DevelopmentConfig):
     """
-    creates an instances of the application 
-    and passes the config name, i.e development
-    or production, the will then pick the environments
-    from the configuration classes in config
+    Function create_app:
+    creates app and gives it the import name
+    holds the configuration being used.
+    registers the orders blueprint
+    :return: app:
     """
-
     app = Flask(__name__)
+    app.config.from_object(DevelopmentConfig)
+    app.register_blueprint(orders_blue_print)
 
+<<<<<<< HEAD
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # set the configurations
@@ -48,3 +53,6 @@ def create_app(config_name):
 
 
     return app
+=======
+    return app 
+>>>>>>> ba86ec7ade79a936b81e04ee8b80a97cf8f97770

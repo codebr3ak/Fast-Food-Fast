@@ -43,12 +43,22 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
+<<<<<<< HEAD
 class Config(object):
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+=======
+class Config:
+    '''
+    General configuration parent class
+    '''
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+    CSRF_ENABLED = os.environ.get('CSRF_ENABLED')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False 
+>>>>>>> ba86ec7ade79a936b81e04ee8b80a97cf8f97770
 
 
 class ProductionConfig(Config):
@@ -67,3 +77,15 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
+<<<<<<< HEAD
+=======
+
+
+config_options = {
+    'development': DevelopmentConfig,
+    'production': ProductionConfig,
+    'testing':TestingConfig,
+
+
+}
+>>>>>>> ba86ec7ade79a936b81e04ee8b80a97cf8f97770

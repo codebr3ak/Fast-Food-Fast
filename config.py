@@ -1,33 +1,27 @@
-import os
-
-
+"""
+module config
+"""
 class Config:
-    '''
-    General configuration parent class
-    '''
-    SECRET_KEY = os.environ.get("SECRET_KEY")
-    CSRF_ENABLED = os.environ.get('CSRF_ENABLED')
-    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
-
-
-
-
-class ProductionConfig(Config):
-    DEBUG = os.environ.get("DEBUG")
-
+    """
+    parent config class
+    """
+    DEBUG = False
 
 class DevelopmentConfig(Config):
-    DEBUG = os.environ.get('DEBUG')
-
+    """
+    class for development configuration
+    """
+    DEBUG = True
 
 class TestingConfig(Config):
+    """
+    class for testing configuration
+    """
+    DEBUG = True
     TESTING = True
 
-
-config_options = {
-    'development': DevelopmentConfig,
-    'production': ProductionConfig,
-    'testing':TestingConfig,
-
-
-}
+class ProductionConfig(Config):
+    """
+    class for production configuration
+    """
+    DEBUG = False

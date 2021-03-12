@@ -1,16 +1,17 @@
+
 from flask import render_template
 from . import main
 
+   
 
 # your views go here i.e for home,about
 @main.route("/")
-def index():
-    return "<h1>Hello World</h1>"
+@main.route('/home')
+def homepage():
+    return render_template('home.html',title=home)
 
 
-@main.route("/about")
-def about():
-    pass
-@main.route("/home")
-def home()
-    return render_template('home.html',title='home page')
+
+
+if __name__=='__main__':
+    app.run(debug=True)
